@@ -2,6 +2,8 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from rest_framework.authtoken import views as authtokenviews
 from product import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
@@ -14,4 +16,3 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 	url(r'^api-token-auth/', authtokenviews.obtain_auth_token)
 ]
-
