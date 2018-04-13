@@ -1,0 +1,31 @@
+version: "3"
+services:
+  catalog-service:
+    # replace username/repo:tag with your name and image details
+    image: baseris/oneacart-catalog:tag
+    command: python3 manage.py runserver 0.0.0.0:13000
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - catalog-service-data:/code
+    ports:
+      - "15000:13000"
+    networks:
+      - backend
+    depends_on:
+      - catalog-db
+      
+  catalog-db:
+    image: postgres:9.4
+    volumes:
+      - catalog-db-data:/var/lib/postgresql/data
+    networks:
+      - backend
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+networks:
+  backend:
+
