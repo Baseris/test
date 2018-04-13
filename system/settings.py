@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': '',
-        'HOST': 'db',
+        'HOST': 'catalog-db',
         'PORT': '5432',
     }
 }
